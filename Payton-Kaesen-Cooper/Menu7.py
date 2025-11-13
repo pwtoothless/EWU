@@ -9,7 +9,7 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-numList = {}
+numList = []
 
 def menu():
     user = 0
@@ -32,7 +32,7 @@ def menu():
             menuItemSeven()
         if user == 8:
             menuItemEight()
-        if user ==  9:
+        if user == 9:
             menuItemNine()
         if user == 0:
             print("thank you for using the menu")
@@ -50,20 +50,22 @@ def printMenu():
     print("9. Item nine")
     print("0. exit")
 
+
 def menuItemOne():
     global numList
     try:
         numList.append(int(input("What would you like  to  add to the list?: ")))
     except (ValueError, KeyboardInterrupt, SystemExit):
         print("Invalid input. Please enter a valid integer.")
-
     print(numList)
-        
+
+
 def menuItemTwo():
     global numList
-    numList = input("What is your list on numbers?: ")
+    numList = input("What is your list of numbers?: ")
     try:
-        numList = list(map(int, numList))
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
         print(numList)
     except (ValueError, KeyboardInterrupt, SystemExit):
         print("Invalid input. Please enter a valid list.")
@@ -72,12 +74,14 @@ def menuItemTwo():
         print(numList)
     except (ValueError, KeyboardInterrupt, SystemExit):
         print("Invalid input. Please enter a valid number.")
-        
+
+
 def menuItemThree():
     global numList
-    numList = input("What is your list on numbers?: ")
+    numList = input("What is your list of numbers?: ")
     try:
-        numList = list(map(int, numList))
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
         print(numList)
     except (ValueError, KeyboardInterrupt, SystemExit):
         print("Invalid input. Please enter a valid list.")
@@ -87,88 +91,108 @@ def menuItemThree():
     except (ValueError, KeyboardInterrupt, SystemExit):
         print("Invalid input. Please enter a valid number.")
 
+
 def menuItemFour():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
-    print(numList)
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        print(numList)
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
+
 
 def menuItemFive():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
-    meanNums = sum(numList) / len(numList)
-    print(meanNums)
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        meanNums = sum(numList) / len(numList)
+        print(meanNums)
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
+
 
 def menuItemSix():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        sorted_list = sorted(numList)
+        n = len(sorted_list)
+        if n % 2 == 1:
+            median = sorted_list[n // 2]
+        else:
+            mid1 = sorted_list[n // 2 - 1]
+            mid2 = sorted_list[n // 2]
+            median = (mid1 + mid2) / 2
+        print(median)
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
 
-    sorted_list = sorted(numList)
-    n = len(sorted_list)
-
-    if n % 2 == 1:
-        median = sorted_list[n // 2]
-    else:
-        mid1 = sorted_list[n // 2 - 1]
-        mid2 = sorted_list[n // 2]
-        median = (mid1 + mid2) / 2
-
-    print(median)
 
 def menuItemSeven():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
-    
-    if len(numList) == 0:
-        print("The list is empty.")
-    elif len(numList) % 2 != 0:
-        mid_index = len(numList) // 2
-        print(numList[mid_index])
-    else:
-        mid_index = len(numList) // 2
-        print(numList[mid_index - 1])
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        if len(numList) == 0:
+            print("The list is empty.")
+        elif len(numList) % 2 != 0:
+            mid_index = len(numList) // 2
+            print(numList[mid_index])
+        else:
+            mid_index = len(numList) // 2
+            print(numList[mid_index - 1])
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
+
 
 def menuItemEight():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
-    counts = {}
-    
-    for item in numList:
-        counts[item] = counts.get(item, 0) + 1
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        counts = {}
+        for item in numList:
+            counts[item] = counts.get(item, 0) + 1
+        max_freq = 0
+        for i in counts.values():
+            if i > max_freq:
+                max_freq = i
+        modes = [item for item, i in counts.items() if i == max_freq]
+        print(modes)
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
 
-    max_freq = 0
-    for i in counts.values():
-        if i > max_freq:
-            max_freq = i
-
-    modes = [item for item, i in counts.items() if i == max_freq]
-    print(modes)
 
 def menuItemNine():
     global numList
-    numList = input("What is your list on numbers?: ")
-    numList = list(map(int, numList))
-    varience = 0
-    standardDiff = 0
-    squaredDiff = []
+    numList = input("What is your list of numbers?: ")
+    try:
+        # Split the input by spaces and map the values to integers
+        numList = list(map(int, numList.split()))
+        varience = 0
+        standardDiff = 0
+        squaredDiff = []
+        mean = sum(numList) / len(numList)
+        for i in numList:
+            squaredDiff.append((i - mean) ** 2)
+        varience = sum(squaredDiff) / (len(numList) - 1)
+        standardDiff = varience ** 0.5
+        print(standardDiff)
+    except (ValueError, KeyboardInterrupt, SystemExit):
+        print("Invalid input. Please enter a valid list.")
 
-    mean = sum(numList) / len(numList)
-
-    for i in numList:
-        squaredDiff.append((i - mean) ** 2)
-
-    varience = sum(squaredDiff) / (len(numList) - 1)
-    
-    standardDiff = varience ** 0.5
-    print(standardDiff)
-    
 
 def main():
     menu()
+
 
 if __name__ == '__main__':
     main()
